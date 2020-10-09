@@ -1,3 +1,4 @@
+// Leetcode
 maxSubArray = a => {
     let maxSum = a[0], i = 0, j = 1, sum = a[i];
     while (j < a.length) {
