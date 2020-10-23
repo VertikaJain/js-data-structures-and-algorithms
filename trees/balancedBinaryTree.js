@@ -1,7 +1,8 @@
 // BALANCED BINARY TREE IMPLEMENTATION USING 
 // BREATH FIRST SEARCH ALGO, 
 // QUEUE DATA STRUCTURE AS ARRAY & 
-// LOOPING (WITHOUT RECURSION)
+// LOOPING (WITHOUT RECURSION) 
+// SEARCHING WITH RECURSION
 
 class Node {
     constructor(data) {
@@ -72,7 +73,17 @@ class BinaryTree {
         }
         return false
     }
+    // SEARCHING WITH RECURSION
+    searchR(data) {
+        return searchBTR(data, this.root)
+    }
 }
+function searchBTR(data, curr) {
+    if (curr == null) return false
+    if (curr.data === data) return true
+    return (searchBTR(data, curr.left) || searchBTR(data, curr.right))
+}
+
 let bt = new BinaryTree();
 let insertArray = [5, 2, 1, 7, 6, 8, 4, 3]
 for (let i of insertArray)
@@ -82,3 +93,8 @@ console.log(bt.search(4));
 console.log(bt.search(41));
 console.log(bt.search(1));
 console.log(bt.search(8));
+console.log("Using Recursion: ");
+console.log(bt.searchR(8));
+console.log(bt.searchR(23));
+console.log(bt.searchR(1));
+console.log(bt.searchR(6));
