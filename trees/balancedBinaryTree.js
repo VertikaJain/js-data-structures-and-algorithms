@@ -1,3 +1,8 @@
+// BALANCED BINARY TREE IMPLEMENTATION USING 
+// BREATH FIRST SEARCH ALGO, 
+// QUEUE DATA STRUCTURE AS ARRAY & 
+// LOOPING (WITHOUT RECURSION)
+
 class Node {
     constructor(data) {
         this.data = data
@@ -9,6 +14,7 @@ class BinaryTree {
     constructor() {
         this.root = null
     }
+    // CREATING BALANCED BINARY TREE
     insertData(data) {
         let newNode = new Node(data)
         if (this.root == null) {
@@ -30,6 +36,7 @@ class BinaryTree {
             queue.push(curr.right)
         }
     }
+    // PRINTING ALL NODES (PREORDER TRAVERSAL)
     traverse() {
         if (this.root == null) {
             return
@@ -47,15 +54,31 @@ class BinaryTree {
         }
         return data
     }
+    // SEARCHING AN ELEMENT IN THE TREE
+    search(data) {
+        if (this.root == null) return false
+        if (this.root.data == data) return true
+        let q = [this.root]
+        while (q.length > 0) {
+            let curr = q.shift()
+            if (curr.left != null) {
+                if (curr.left.data == data) return true
+                q.push(curr.left)
+            }
+            if (curr.right != null) {
+                if (curr.right.data == data) return true
+                q.push(curr.right)
+            }
+        }
+        return false
+    }
 }
-
 let bt = new BinaryTree();
-bt.insertData(1);
-bt.insertData(2);
-bt.insertData(3);
-bt.insertData(4);
-bt.insertData(5);
-bt.insertData(6);
-bt.insertData(7);
-bt.insertData(8);
+let insertArray = [5, 2, 1, 7, 6, 8, 4, 3]
+for (let i of insertArray)
+    bt.insertData(i)
 console.log(bt.traverse());
+console.log(bt.search(4));
+console.log(bt.search(41));
+console.log(bt.search(1));
+console.log(bt.search(8));
