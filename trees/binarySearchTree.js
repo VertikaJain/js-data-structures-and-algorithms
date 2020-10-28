@@ -35,10 +35,23 @@ class BinarySearchTree {
         }
         insert(curr)
     }
-    
+    // Inorder Traversal-> results to a sorted array
+    traverseBST() {
+        if (this.root == null) return
+        let curr = this.root, data = []
+        function traverse(curr) {
+            if (curr.left != null) traverse(curr.left)
+            data.push(curr.data)
+            if (curr.right != null) traverse(curr.right)
+            return data
+        }
+        traverse(curr)
+        return data
+    }
 }
 
 let bst = new BinarySearchTree();
 let insertArray = [5, 2, 1, 7, 6, 8, 4, 3]
 for (let i of insertArray)
     bst.insertData(i)
+console.log(bst.traverseBST())
